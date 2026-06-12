@@ -1,0 +1,3874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive cofounder decision brief for the June 2026 HVAC vertical research.">
+  <meta name="theme-color" content="#0b1530">
+  <title>HVAC Vertical | Cofounder Decision Brief</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1530'/%3E%3Cpath d='M14 44V20m12 24V28m12 16V14m12 30V25' stroke='white' stroke-width='5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-950: #071126;
+      --navy-900: #0b1530;
+      --navy-800: #122454;
+      --blue-800: #1e40af;
+      --blue-600: #2563eb;
+      --blue-500: #3b82f6;
+      --blue-100: #dbeafe;
+      --amber-600: #d97706;
+      --amber-500: #f59e0b;
+      --amber-100: #fef3c7;
+      --green-700: #15803d;
+      --green-100: #dcfce7;
+      --red-700: #b91c1c;
+      --red-100: #fee2e2;
+      --slate-950: #0f172a;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-300: #cbd5e1;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --canvas: #f6f7f4;
+      --paper: #ffffff;
+      --warm: #fffaf0;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05), 0 8px 24px rgba(15, 23, 42, 0.05);
+      --shadow-lg: 0 24px 70px rgba(7, 17, 38, 0.16);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --content: 1240px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 96px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--slate-950);
+      background:
+        radial-gradient(circle at 88% 6%, rgba(59, 130, 246, 0.08), transparent 30rem),
+        linear-gradient(180deg, #fbfcfa 0%, var(--canvas) 45%, #f8fafc 100%);
+      font-family: "Fira Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-width: 320px;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      content: "";
+      opacity: 0.28;
+      background-image:
+        linear-gradient(rgba(30, 64, 175, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 64, 175, 0.045) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, black, transparent 72%);
+      pointer-events: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(37, 99, 235, 0.42);
+      outline-offset: 3px;
+    }
+
+    ::selection {
+      color: var(--paper);
+      background: var(--blue-800);
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 100;
+      padding: 10px 14px;
+      color: white;
+      background: var(--navy-950);
+      border-radius: 8px;
+      transform: translateY(-160%);
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .reading-progress {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 80;
+      height: 3px;
+      background: transparent;
+    }
+
+    .reading-progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--amber-500), var(--blue-500));
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 70;
+      border-bottom: 1px solid rgba(203, 213, 225, 0.72);
+      background: rgba(251, 252, 250, 0.88);
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(calc(100% - 32px), var(--content));
+      min-height: 72px;
+      margin: 0 auto;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      min-width: max-content;
+      gap: 11px;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 35px;
+      height: 35px;
+      place-items: center;
+      color: white;
+      background: var(--navy-900);
+      border-radius: 10px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    }
+
+    .brand-mark svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .brand-copy {
+      display: grid;
+      line-height: 1.05;
+    }
+
+    .brand-copy strong {
+      font-size: 0.92rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-copy span {
+      margin-top: 4px;
+      color: var(--slate-500);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .header-nav a {
+      padding: 9px 10px;
+      color: var(--slate-600);
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 180ms ease, background 180ms ease;
+    }
+
+    .header-nav a:hover {
+      color: var(--navy-900);
+      background: var(--slate-100);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      min-width: max-content;
+      gap: 8px;
+    }
+
+    .icon-btn,
+    .mode-btn {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--navy-900);
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      font-size: 0.78rem;
+      font-weight: 700;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .icon-btn {
+      width: 42px;
+      padding: 0;
+    }
+
+    .mode-btn {
+      padding: 0 13px;
+    }
+
+    .icon-btn:hover,
+    .mode-btn:hover {
+      border-color: var(--slate-300);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-1px);
+    }
+
+    .icon-btn svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .page {
+      width: min(calc(100% - 32px), var(--content));
+      margin: 0 auto;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: 690px;
+      align-items: center;
+      padding: 78px 0 58px;
+      grid-template-columns: minmax(0, 1.2fr) minmax(330px, 0.8fr);
+      gap: clamp(42px, 7vw, 96px);
+      overflow: hidden;
+    }
+
+    .hero::after {
+      position: absolute;
+      top: 76px;
+      right: -200px;
+      z-index: -1;
+      width: 620px;
+      height: 620px;
+      content: "";
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.18), transparent 67%);
+      filter: blur(12px);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 20px;
+      color: var(--blue-800);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 24px;
+      height: 2px;
+      content: "";
+      background: currentColor;
+      border-radius: 99px;
+    }
+
+    .hero h1 {
+      max-width: 800px;
+      margin: 0;
+      color: var(--navy-950);
+      font-size: clamp(3.2rem, 7.4vw, 7.5rem);
+      font-weight: 800;
+      letter-spacing: -0.072em;
+      line-height: 0.88;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--blue-800);
+    }
+
+    .hero-lede {
+      max-width: 740px;
+      margin: 30px 0 0;
+      color: var(--slate-600);
+      font-size: clamp(1.08rem, 1.7vw, 1.34rem);
+      line-height: 1.55;
+    }
+
+    .hero-lede strong {
+      color: var(--slate-950);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 32px;
+      gap: 12px;
+    }
+
+    .primary-link,
+    .secondary-link {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .primary-link {
+      color: white;
+      background: var(--navy-900);
+      box-shadow: 0 12px 30px rgba(7, 17, 38, 0.18);
+    }
+
+    .secondary-link {
+      color: var(--navy-900);
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+    }
+
+    .primary-link:hover,
+    .secondary-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(7, 17, 38, 0.16);
+    }
+
+    .hero-card {
+      position: relative;
+      color: white;
+      background:
+        linear-gradient(150deg, rgba(37, 99, 235, 0.18), transparent 38%),
+        var(--navy-900);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      opacity: 0.18;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(140deg, black, transparent 72%);
+      pointer-events: none;
+    }
+
+    .verdict-top {
+      position: relative;
+      padding: 30px 30px 26px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .verdict-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      color: #fffbeb;
+      background: rgba(245, 158, 11, 0.18);
+      border: 1px solid rgba(245, 158, 11, 0.38);
+      border-radius: 999px;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .status-pill::before {
+      width: 7px;
+      height: 7px;
+      content: "";
+      background: var(--amber-500);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(245, 158, 11, 0.12);
+    }
+
+    .source-date {
+      color: #94a3b8;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.67rem;
+    }
+
+    .verdict-top h2 {
+      position: relative;
+      max-width: 430px;
+      margin: 38px 0 12px;
+      font-size: clamp(2.1rem, 4vw, 3.4rem);
+      letter-spacing: -0.045em;
+      line-height: 1;
+    }
+
+    .verdict-top p {
+      position: relative;
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    .verdict-stack {
+      position: relative;
+      display: grid;
+      padding: 10px 30px 26px;
+    }
+
+    .verdict-line {
+      display: grid;
+      padding: 17px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      grid-template-columns: 34px 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .verdict-line:last-child {
+      border-bottom: 0;
+    }
+
+    .verdict-line .step {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      color: var(--amber-100);
+      background: rgba(245, 158, 11, 0.14);
+      border-radius: 9px;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .verdict-line strong {
+      display: block;
+      font-size: 0.88rem;
+    }
+
+    .verdict-line span:not(.step) {
+      color: #94a3b8;
+      font-size: 0.74rem;
+    }
+
+    .verdict-line b {
+      color: white;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      padding: 0;
+      color: var(--slate-500);
+      list-style: none;
+      gap: 7px 18px;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.68rem;
+    }
+
+    .hero-meta li {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .hero-meta li::before {
+      width: 5px;
+      height: 5px;
+      content: "";
+      background: var(--blue-500);
+      border-radius: 50%;
+    }
+
+    .content-layout {
+      display: grid;
+      padding-bottom: 80px;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 50px;
+    }
+
+    .toc {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+      padding: 20px 0;
+    }
+
+    .toc-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--slate-500);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.64rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .toc nav {
+      display: grid;
+      gap: 4px;
+    }
+
+    .toc a {
+      position: relative;
+      display: block;
+      padding: 8px 8px 8px 17px;
+      color: var(--slate-500);
+      border-radius: 7px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height: 1.25;
+      text-decoration: none;
+      transition: color 180ms ease, background 180ms ease;
+    }
+
+    .toc a::before {
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 4px;
+      width: 2px;
+      content: "";
+      background: var(--slate-200);
+      border-radius: 99px;
+      transition: background 180ms ease;
+    }
+
+    .toc a:hover,
+    .toc a.active {
+      color: var(--navy-900);
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .toc a.active::before {
+      background: var(--amber-500);
+    }
+
+    .main-content {
+      min-width: 0;
+    }
+
+    .section {
+      padding: 72px 0;
+      border-top: 1px solid rgba(203, 213, 225, 0.72);
+    }
+
+    .section:first-child {
+      border-top: 0;
+    }
+
+    .section-heading {
+      display: grid;
+      margin-bottom: 32px;
+      grid-template-columns: minmax(0, 0.8fr) minmax(280px, 0.52fr);
+      gap: 40px;
+      align-items: end;
+    }
+
+    .section-heading h2 {
+      max-width: 720px;
+      margin: 0;
+      color: var(--navy-950);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: -0.05em;
+      line-height: 1.02;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--slate-600);
+      font-size: 0.98rem;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi {
+      position: relative;
+      min-height: 176px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .kpi::after {
+      position: absolute;
+      right: -22px;
+      bottom: -32px;
+      width: 110px;
+      height: 110px;
+      content: "";
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.12), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .kpi-label {
+      display: block;
+      color: var(--slate-500);
+      font-size: 0.69rem;
+      font-weight: 800;
+      letter-spacing: 0.075em;
+      text-transform: uppercase;
+    }
+
+    .kpi strong {
+      display: block;
+      margin-top: 19px;
+      color: var(--navy-900);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: clamp(1.55rem, 3.1vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -0.055em;
+      line-height: 1;
+    }
+
+    .kpi p {
+      margin: 12px 0 0;
+      color: var(--slate-600);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .decision-band {
+      display: grid;
+      margin-top: 14px;
+      padding: 22px 24px;
+      color: var(--navy-900);
+      background: linear-gradient(110deg, var(--amber-100), #fff8e7);
+      border: 1px solid #f6d98a;
+      border-radius: var(--radius-md);
+      grid-template-columns: auto 1fr auto;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .decision-icon {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      color: var(--amber-600);
+      background: rgba(255, 255, 255, 0.72);
+      border-radius: 12px;
+    }
+
+    .decision-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .decision-band strong {
+      display: block;
+      font-size: 0.98rem;
+    }
+
+    .decision-band p {
+      margin: 4px 0 0;
+      color: #78350f;
+      font-size: 0.84rem;
+    }
+
+    .decision-band b {
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.74rem;
+      white-space: nowrap;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .truth-card {
+      padding: 28px;
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .truth-card.pro {
+      border-top: 4px solid var(--green-700);
+    }
+
+    .truth-card.con {
+      border-top: 4px solid var(--red-700);
+    }
+
+    .truth-card h3,
+    .panel h3,
+    .offer-card h3,
+    .risk-card h3 {
+      margin: 0;
+      color: var(--navy-950);
+      font-size: 1.18rem;
+      letter-spacing: -0.025em;
+    }
+
+    .truth-card > p {
+      margin: 8px 0 0;
+      color: var(--slate-600);
+      font-size: 0.86rem;
+    }
+
+    .point-list {
+      display: grid;
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+      gap: 16px;
+    }
+
+    .point-list li {
+      display: grid;
+      color: var(--slate-700);
+      font-size: 0.88rem;
+      grid-template-columns: 26px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .point-list li::before {
+      display: grid;
+      width: 23px;
+      height: 23px;
+      place-items: center;
+      border-radius: 7px;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.67rem;
+      font-weight: 600;
+    }
+
+    .pro .point-list li::before {
+      color: var(--green-700);
+      background: var(--green-100);
+      content: "+";
+    }
+
+    .con .point-list li::before {
+      color: var(--red-700);
+      background: var(--red-100);
+      content: "-";
+    }
+
+    .market-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 16px;
+    }
+
+    .panel {
+      padding: 28px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-dark {
+      color: white;
+      background: var(--navy-900);
+      border-color: var(--navy-900);
+    }
+
+    .panel-dark h3 {
+      color: white;
+    }
+
+    .panel-kicker {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--blue-600);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .panel-dark .panel-kicker {
+      color: #93c5fd;
+    }
+
+    .stat-row {
+      display: grid;
+      margin-top: 26px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .mini-stat {
+      padding: 16px;
+      background: var(--slate-100);
+      border-radius: 12px;
+    }
+
+    .panel-dark .mini-stat {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mini-stat strong {
+      display: block;
+      color: var(--navy-900);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 1.08rem;
+    }
+
+    .panel-dark .mini-stat strong {
+      color: white;
+    }
+
+    .mini-stat span {
+      display: block;
+      margin-top: 5px;
+      color: var(--slate-500);
+      font-size: 0.68rem;
+      line-height: 1.35;
+    }
+
+    .panel-dark .mini-stat span {
+      color: #94a3b8;
+    }
+
+    .detail-note,
+    .offer-note {
+      margin: 22px 0 0;
+      color: var(--slate-600);
+      font-size: 0.8rem;
+    }
+
+    .buyer-lines {
+      display: grid;
+      margin-top: 24px;
+      gap: 11px;
+    }
+
+    .buyer-line {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-bottom: 11px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+      gap: 20px;
+    }
+
+    .buyer-line:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .buyer-line span {
+      color: #94a3b8;
+      font-size: 0.76rem;
+    }
+
+    .buyer-line strong {
+      max-width: 230px;
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .targeting-grid {
+      display: grid;
+      margin-top: 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .target-box {
+      padding: 24px;
+      border-radius: var(--radius-md);
+    }
+
+    .target-box.good {
+      background: #eef8f1;
+      border: 1px solid #c4e7cd;
+    }
+
+    .target-box.bad {
+      background: #fff3f1;
+      border: 1px solid #f5ccc6;
+    }
+
+    .target-box h3 {
+      margin: 0 0 15px;
+      font-size: 1rem;
+    }
+
+    .target-box ul {
+      display: grid;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      gap: 9px;
+    }
+
+    .target-box li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--slate-700);
+      font-size: 0.82rem;
+    }
+
+    .target-box li::before {
+      position: absolute;
+      top: 0.65em;
+      left: 0;
+      width: 6px;
+      height: 6px;
+      content: "";
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+
+    .target-box.good li::before {
+      background: var(--green-700);
+    }
+
+    .target-box.bad li::before {
+      background: var(--red-700);
+    }
+
+    .wedge-statement {
+      position: relative;
+      padding: clamp(28px, 5vw, 54px);
+      color: white;
+      background:
+        radial-gradient(circle at 88% 15%, rgba(59, 130, 246, 0.26), transparent 30rem),
+        var(--navy-900);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .wedge-statement::after {
+      position: absolute;
+      right: 34px;
+      bottom: -56px;
+      color: rgba(255, 255, 255, 0.04);
+      content: "WEDGE";
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: clamp(5rem, 13vw, 10rem);
+      font-weight: 600;
+      letter-spacing: -0.08em;
+      pointer-events: none;
+    }
+
+    .wedge-statement h3 {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0;
+      font-size: clamp(2rem, 4.2vw, 4rem);
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+    }
+
+    .wedge-statement h3 span {
+      color: #93c5fd;
+    }
+
+    .wedge-statement p {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: #cbd5e1;
+      font-size: 0.96rem;
+    }
+
+    .flow {
+      display: grid;
+      margin-top: 16px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .flow-step {
+      position: relative;
+      min-height: 170px;
+      padding: 22px;
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .flow-step::after {
+      position: absolute;
+      top: 50%;
+      right: -12px;
+      z-index: 2;
+      width: 22px;
+      height: 22px;
+      content: "";
+      background: var(--paper);
+      border-top: 1px solid var(--slate-200);
+      border-right: 1px solid var(--slate-200);
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .flow-step:last-child::after {
+      display: none;
+    }
+
+    .flow-step b {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      color: var(--blue-800);
+      background: var(--blue-100);
+      border-radius: 9px;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.68rem;
+    }
+
+    .flow-step h4 {
+      margin: 18px 0 7px;
+      color: var(--navy-900);
+      font-size: 0.94rem;
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--slate-600);
+      font-size: 0.76rem;
+      line-height: 1.45;
+    }
+
+    .offer-grid {
+      display: grid;
+      margin-top: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .offer-card {
+      padding: 28px;
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .offer-card.featured {
+      background:
+        linear-gradient(145deg, rgba(239, 246, 255, 0.92), rgba(255, 255, 255, 0.98));
+      border-color: #93c5fd;
+      box-shadow: 0 18px 45px rgba(30, 64, 175, 0.12);
+    }
+
+    .offer-price {
+      display: flex;
+      align-items: baseline;
+      margin-top: 20px;
+      gap: 8px;
+    }
+
+    .offer-price strong {
+      color: var(--navy-900);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: clamp(1.75rem, 3.4vw, 3rem);
+      font-weight: 600;
+      letter-spacing: -0.06em;
+      line-height: 1;
+    }
+
+    .offer-price span {
+      color: var(--slate-500);
+      font-size: 0.76rem;
+    }
+
+    .feature-chips {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 22px;
+      padding: 0;
+      list-style: none;
+      gap: 8px;
+    }
+
+    .feature-chip {
+      padding: 8px 10px;
+      color: var(--navy-800);
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      border-radius: 999px;
+      font-size: 0.73rem;
+      font-weight: 700;
+    }
+
+    .attach-list {
+      display: grid;
+      margin-top: 22px;
+      gap: 10px;
+    }
+
+    .attach-item {
+      display: grid;
+      padding: 15px 0;
+      border-top: 1px solid var(--slate-200);
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .attach-item strong {
+      display: block;
+      font-size: 0.86rem;
+    }
+
+    .attach-item small {
+      color: var(--slate-500);
+      font-size: 0.72rem;
+    }
+
+    .attach-item b {
+      color: var(--blue-800);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.76rem;
+      white-space: nowrap;
+    }
+
+    .scenario-shell {
+      padding: clamp(20px, 3.5vw, 36px);
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .scenario-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .segmented {
+      display: inline-grid;
+      padding: 4px;
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      grid-auto-flow: column;
+      gap: 3px;
+    }
+
+    .segmented button {
+      min-height: 40px;
+      padding: 0 14px;
+      color: var(--slate-600);
+      background: transparent;
+      border: 0;
+      border-radius: 9px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .segmented button[aria-selected="true"] {
+      color: var(--navy-900);
+      background: var(--paper);
+      box-shadow: 0 2px 7px rgba(15, 23, 42, 0.1);
+    }
+
+    .scenario-tag {
+      color: var(--slate-500);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.67rem;
+      text-align: right;
+    }
+
+    .scenario-name {
+      margin: 32px 0 0;
+      color: var(--navy-950);
+      font-size: clamp(1.8rem, 4vw, 3.1rem);
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+    }
+
+    .scenario-description {
+      max-width: 780px;
+      margin: 10px 0 0;
+      color: var(--slate-600);
+      font-size: 0.9rem;
+    }
+
+    .scenario-metrics {
+      display: grid;
+      margin-top: 28px;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .scenario-metric {
+      min-width: 0;
+      padding: 17px;
+      background: var(--slate-100);
+      border-radius: 13px;
+    }
+
+    .scenario-metric span {
+      display: block;
+      color: var(--slate-500);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.055em;
+      text-transform: uppercase;
+    }
+
+    .scenario-metric strong {
+      display: block;
+      margin-top: 10px;
+      color: var(--navy-900);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: clamp(0.98rem, 2.2vw, 1.38rem);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+    }
+
+    .scenario-visuals {
+      display: grid;
+      margin-top: 28px;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+      gap: 22px;
+    }
+
+    .chart-card,
+    .funnel-card {
+      padding: 22px;
+      background: #fbfcff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .card-title-row h4 {
+      margin: 0;
+      font-size: 0.88rem;
+    }
+
+    .card-title-row span {
+      color: var(--slate-500);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.62rem;
+    }
+
+    .bar-chart {
+      display: grid;
+      height: 260px;
+      margin-top: 24px;
+      padding: 18px 8px 0;
+      border-bottom: 1px solid var(--slate-300);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+      align-items: end;
+      background-image: linear-gradient(to top, rgba(203, 213, 225, 0.45) 1px, transparent 1px);
+      background-size: 100% 25%;
+    }
+
+    .bar-group {
+      display: grid;
+      height: 100%;
+      grid-template-rows: 1fr auto;
+      align-items: end;
+      justify-items: center;
+    }
+
+    .bar {
+      position: relative;
+      width: min(84px, 72%);
+      min-height: 12px;
+      background: linear-gradient(180deg, var(--blue-500), var(--blue-800));
+      border-radius: 10px 10px 2px 2px;
+      box-shadow: 0 12px 25px rgba(37, 99, 235, 0.18);
+      transition: height 420ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #barM12 {
+      height: 18px;
+    }
+
+    #barM24 {
+      height: 31px;
+    }
+
+    .bar span {
+      position: absolute;
+      top: -29px;
+      left: 50%;
+      color: var(--navy-900);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.76rem;
+      font-weight: 600;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    .bar-group > small {
+      margin: 11px 0 -28px;
+      color: var(--slate-500);
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    .funnel {
+      display: grid;
+      margin-top: 24px;
+      gap: 9px;
+    }
+
+    .funnel-row {
+      display: grid;
+      grid-template-columns: 106px 1fr 58px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .funnel-row span {
+      color: var(--slate-600);
+      font-size: 0.69rem;
+    }
+
+    .funnel-track {
+      height: 9px;
+      background: var(--slate-200);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .funnel-fill {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--amber-500), var(--blue-600));
+      border-radius: inherit;
+      transition: width 420ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .funnel-row b {
+      color: var(--navy-900);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .scenario-warning {
+      display: grid;
+      margin-top: 22px;
+      padding: 18px;
+      color: #78350f;
+      background: var(--warm);
+      border: 1px solid #f4dda8;
+      border-radius: 13px;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .scenario-warning svg {
+      width: 19px;
+      height: 19px;
+      margin-top: 2px;
+      color: var(--amber-600);
+    }
+
+    .scenario-warning p {
+      margin: 0;
+      font-size: 0.76rem;
+    }
+
+    .section-spacer {
+      height: 16px;
+    }
+
+    .lab {
+      display: grid;
+      padding: clamp(24px, 4vw, 40px);
+      color: white;
+      background:
+        radial-gradient(circle at 96% 2%, rgba(59, 130, 246, 0.28), transparent 28rem),
+        var(--navy-900);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      grid-template-columns: 1fr 0.92fr;
+      gap: clamp(30px, 5vw, 66px);
+    }
+
+    .lab-copy h3 {
+      margin: 0;
+      color: white;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+    }
+
+    .lab-copy > p {
+      margin: 14px 0 0;
+      color: #b9c7dc;
+      font-size: 0.86rem;
+    }
+
+    .controls {
+      display: grid;
+      margin-top: 30px;
+      gap: 21px;
+    }
+
+    .package-presets {
+      width: 100%;
+      margin-top: 22px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-flow: initial;
+    }
+
+    .package-presets button {
+      min-width: 0;
+      padding: 0 8px;
+    }
+
+    .package-presets button[aria-pressed="true"] {
+      color: var(--navy-900);
+      background: var(--paper);
+      box-shadow: 0 2px 7px rgba(15, 23, 42, 0.1);
+    }
+
+    .range-control {
+      display: grid;
+      gap: 10px;
+    }
+
+    .range-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .range-label label {
+      color: #dbeafe;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .range-label output {
+      color: white;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.74rem;
+      font-weight: 600;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      margin: 0;
+      accent-color: var(--amber-500);
+    }
+
+    .lab-results {
+      display: grid;
+      align-content: center;
+      gap: 11px;
+    }
+
+    .lab-verdict {
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-md);
+    }
+
+    .lab-verdict span {
+      display: block;
+      color: #93c5fd;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .lab-verdict strong {
+      display: block;
+      margin-top: 13px;
+      font-size: clamp(1.55rem, 3vw, 2.3rem);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    .lab-verdict p {
+      margin: 10px 0 0;
+      color: #b9c7dc;
+      font-size: 0.76rem;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .result-tile {
+      min-width: 0;
+      padding: 17px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 13px;
+    }
+
+    .result-tile span {
+      display: block;
+      color: #94a3b8;
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.055em;
+      text-transform: uppercase;
+    }
+
+    .result-tile strong {
+      display: block;
+      margin-top: 8px;
+      color: white;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: clamp(1rem, 2.2vw, 1.38rem);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+    }
+
+    .lab-note {
+      margin: 4px 0 0;
+      color: #7f93b0;
+      font-size: 0.66rem;
+      line-height: 1.45;
+    }
+
+    .gate-shell {
+      padding: clamp(22px, 4vw, 36px);
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .gate-summary {
+      display: grid;
+      padding: 22px;
+      background: var(--slate-100);
+      border-radius: var(--radius-md);
+      grid-template-columns: auto 1fr auto;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .gate-score {
+      display: grid;
+      width: 70px;
+      height: 70px;
+      place-items: center;
+      color: var(--navy-900);
+      background: white;
+      border: 1px solid var(--slate-200);
+      border-radius: 50%;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 1.15rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .gate-summary h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .gate-summary p {
+      margin: 5px 0 0;
+      color: var(--slate-600);
+      font-size: 0.78rem;
+    }
+
+    .reset-btn {
+      min-height: 40px;
+      padding: 0 13px;
+      color: var(--slate-700);
+      background: white;
+      border: 1px solid var(--slate-200);
+      border-radius: 9px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .gate-list {
+      display: grid;
+      margin-top: 18px;
+      gap: 10px;
+    }
+
+    .gate-row {
+      display: grid;
+      padding: 19px;
+      background: #fcfdfd;
+      border: 1px solid var(--slate-200);
+      border-radius: 14px;
+      grid-template-columns: 54px minmax(0, 1fr) auto;
+      gap: 15px;
+      align-items: center;
+      transition: border-color 180ms ease, background 180ms ease;
+    }
+
+    .gate-row[data-state="pass"] {
+      background: #f5fbf6;
+      border-color: #b8ddc1;
+    }
+
+    .gate-row[data-state="fail"] {
+      background: #fff7f6;
+      border-color: #f0bdb7;
+    }
+
+    .gate-code {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      color: var(--blue-800);
+      background: var(--blue-100);
+      border-radius: 13px;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .gate-copy strong {
+      display: block;
+      color: var(--navy-900);
+      font-size: 0.86rem;
+    }
+
+    .gate-copy span {
+      display: block;
+      margin-top: 4px;
+      color: var(--slate-500);
+      font-size: 0.72rem;
+    }
+
+    .state-control {
+      display: inline-grid;
+      padding: 3px;
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      grid-auto-flow: column;
+      gap: 2px;
+    }
+
+    .state-control button {
+      min-height: 36px;
+      padding: 0 10px;
+      color: var(--slate-500);
+      background: transparent;
+      border: 0;
+      border-radius: 7px;
+      font-size: 0.67rem;
+      font-weight: 800;
+    }
+
+    .state-control button[aria-pressed="true"][data-state-value="pending"] {
+      color: var(--navy-900);
+      background: white;
+    }
+
+    .state-control button[aria-pressed="true"][data-state-value="pass"] {
+      color: var(--green-700);
+      background: var(--green-100);
+    }
+
+    .state-control button[aria-pressed="true"][data-state-value="fail"] {
+      color: var(--red-700);
+      background: var(--red-100);
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      padding-left: 26px;
+      gap: 15px;
+    }
+
+    .timeline::before {
+      position: absolute;
+      top: 18px;
+      bottom: 18px;
+      left: 9px;
+      width: 2px;
+      content: "";
+      background: linear-gradient(var(--blue-500), var(--amber-500));
+      border-radius: 99px;
+    }
+
+    .timeline-item {
+      position: relative;
+      display: grid;
+      padding: 22px;
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      grid-template-columns: 130px 1fr;
+      gap: 20px;
+    }
+
+    .timeline-item::before {
+      position: absolute;
+      top: 26px;
+      left: -24px;
+      width: 12px;
+      height: 12px;
+      content: "";
+      background: var(--paper);
+      border: 3px solid var(--blue-600);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px var(--canvas);
+    }
+
+    .timeline-date {
+      color: var(--blue-800);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .timeline-copy h3 {
+      margin: 0;
+      font-size: 0.96rem;
+    }
+
+    .timeline-copy p {
+      margin: 7px 0 0;
+      color: var(--slate-600);
+      font-size: 0.8rem;
+    }
+
+    .timeline-copy ul {
+      display: grid;
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--slate-700);
+      font-size: 0.76rem;
+      gap: 5px;
+    }
+
+    .risk-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      gap: 7px;
+    }
+
+    .filter-btn {
+      min-height: 40px;
+      padding: 0 13px;
+      color: var(--slate-600);
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .filter-btn[aria-pressed="true"] {
+      color: white;
+      background: var(--navy-900);
+      border-color: var(--navy-900);
+    }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .risk-card {
+      display: grid;
+      padding: 22px;
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      grid-template-columns: 40px 1fr;
+      gap: 14px;
+    }
+
+    .risk-card[hidden] {
+      display: none;
+    }
+
+    .risk-num {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      color: var(--red-700);
+      background: var(--red-100);
+      border-radius: 11px;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+    }
+
+    .risk-card h3 {
+      font-size: 0.9rem;
+    }
+
+    .risk-meta {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      gap: 5px;
+    }
+
+    .risk-meta span {
+      padding: 4px 6px;
+      color: var(--slate-600);
+      background: var(--slate-100);
+      border-radius: 6px;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.58rem;
+      text-transform: uppercase;
+    }
+
+    .risk-card p {
+      margin: 10px 0 0;
+      color: var(--slate-600);
+      font-size: 0.76rem;
+    }
+
+    .escape-grid {
+      display: grid;
+      margin-top: 18px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .escape-card {
+      padding: 22px;
+      background: #f8fafc;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+    }
+
+    .escape-card span {
+      color: var(--blue-800);
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .escape-card h3 {
+      margin: 11px 0 7px;
+      font-size: 0.94rem;
+    }
+
+    .escape-card p {
+      margin: 0;
+      color: var(--slate-600);
+      font-size: 0.74rem;
+    }
+
+    .integrity-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    details {
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    summary {
+      display: grid;
+      min-height: 78px;
+      padding: 20px 52px 20px 22px;
+      color: var(--navy-900);
+      cursor: pointer;
+      list-style: none;
+      font-weight: 800;
+      align-content: center;
+      position: relative;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      position: absolute;
+      top: 50%;
+      right: 22px;
+      width: 24px;
+      height: 24px;
+      content: "+";
+      color: var(--blue-800);
+      background: var(--blue-100);
+      border-radius: 8px;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.9rem;
+      line-height: 24px;
+      text-align: center;
+      transform: translateY(-50%);
+    }
+
+    details[open] summary::after {
+      content: "-";
+    }
+
+    .details-body {
+      padding: 0 22px 22px;
+      color: var(--slate-600);
+      font-size: 0.79rem;
+    }
+
+    .details-body p {
+      margin: 0;
+    }
+
+    .details-body ul {
+      display: grid;
+      margin: 0;
+      padding-left: 18px;
+      gap: 7px;
+    }
+
+    .source-strip {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      padding: 0;
+      list-style: none;
+      gap: 7px;
+    }
+
+    .source-strip li {
+      padding: 6px 8px;
+      color: var(--slate-600);
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      border-radius: 7px;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.6rem;
+    }
+
+    .final-call {
+      position: relative;
+      padding: clamp(34px, 6vw, 70px);
+      color: white;
+      background:
+        radial-gradient(circle at 84% 12%, rgba(245, 158, 11, 0.2), transparent 23rem),
+        linear-gradient(135deg, var(--navy-950), var(--navy-800));
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .final-call h2 {
+      position: relative;
+      max-width: 860px;
+      margin: 0;
+      font-size: clamp(2.2rem, 5.5vw, 5rem);
+      letter-spacing: -0.06em;
+      line-height: 0.98;
+    }
+
+    .final-call h2 span {
+      color: #fcd34d;
+    }
+
+    .final-call p {
+      position: relative;
+      max-width: 760px;
+      margin: 24px 0 0;
+      color: #cbd5e1;
+      font-size: 0.94rem;
+    }
+
+    .final-call .eyebrow {
+      color: #fcd34d;
+    }
+
+    .final-grid {
+      position: relative;
+      display: grid;
+      margin-top: 32px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .final-item {
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 13px;
+    }
+
+    .final-item span {
+      color: #93c5fd;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+    }
+
+    .final-item strong {
+      display: block;
+      margin-top: 8px;
+      color: white;
+      font-size: 0.84rem;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0 48px;
+      color: var(--slate-500);
+      border-top: 1px solid var(--slate-200);
+      gap: 20px;
+      font-family: "Fira Code", ui-monospace, monospace;
+      font-size: 0.64rem;
+    }
+
+    .detail-only {
+      display: none !important;
+    }
+
+    body.detail-mode .detail-only {
+      display: grid !important;
+    }
+
+    body.detail-mode .risk-card.detail-only {
+      display: grid !important;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-copy,
+    .hero-card {
+      animation: hero-rise 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-card {
+      animation-delay: 120ms;
+    }
+
+    @keyframes hero-rise {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1120px) {
+      .header-nav {
+        display: none;
+      }
+
+      .content-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 60px;
+      }
+
+      .scenario-metrics {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        max-width: 780px;
+      }
+
+      .hero-card {
+        max-width: 700px;
+      }
+
+      .section-heading,
+      .market-grid,
+      .offer-grid,
+      .scenario-visuals,
+      .lab {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        gap: 12px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow-step::after {
+        display: none;
+      }
+
+      .escape-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner {
+        width: min(calc(100% - 20px), var(--content));
+        min-height: 64px;
+      }
+
+      .brand-copy span {
+        display: none;
+      }
+
+      .mode-btn {
+        width: 42px;
+        padding: 0;
+        font-size: 0;
+      }
+
+      .mode-btn::before {
+        content: "Aa";
+        font-family: "Fira Code", ui-monospace, monospace;
+        font-size: 0.72rem;
+      }
+
+      .page {
+        width: min(calc(100% - 20px), var(--content));
+      }
+
+      .hero {
+        padding: 45px 0 42px;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.15rem, 17vw, 5.2rem);
+      }
+
+      .hero-lede {
+        margin-top: 22px;
+      }
+
+      .verdict-top,
+      .verdict-stack {
+        padding-right: 22px;
+        padding-left: 22px;
+      }
+
+      .section {
+        padding: 54px 0;
+      }
+
+      .section-heading {
+        margin-bottom: 24px;
+      }
+
+      .kpi-grid,
+      .two-column,
+      .targeting-grid,
+      .risk-grid,
+      .integrity-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .kpi {
+        min-height: 150px;
+      }
+
+      .decision-band,
+      .gate-summary {
+        grid-template-columns: auto 1fr;
+      }
+
+      .decision-band b,
+      .gate-summary .reset-btn {
+        grid-column: 2;
+        justify-self: start;
+      }
+
+      .stat-row {
+        grid-template-columns: 1fr;
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .scenario-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .segmented {
+        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .segmented button {
+        padding: 0 8px;
+      }
+
+      .scenario-tag {
+        text-align: left;
+      }
+
+      .scenario-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .scenario-metric:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .bar-chart {
+        height: 220px;
+      }
+
+      .gate-row {
+        grid-template-columns: 46px 1fr;
+      }
+
+      .gate-code {
+        width: 42px;
+        height: 42px;
+      }
+
+      .state-control {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .final-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 430px) {
+      body {
+        font-size: 15px;
+      }
+
+      .header-actions {
+        gap: 5px;
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .primary-link,
+      .secondary-link {
+        width: 100%;
+      }
+
+      .hero-meta {
+        display: grid;
+      }
+
+      .verdict-status {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .verdict-line {
+        grid-template-columns: 30px 1fr;
+      }
+
+      .verdict-line b {
+        grid-column: 2;
+      }
+
+      .scenario-metrics,
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scenario-metric:last-child {
+        grid-column: auto;
+      }
+
+      .funnel-row {
+        grid-template-columns: 86px 1fr 48px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      [data-reveal] {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      body::before,
+      .reading-progress,
+      .site-header,
+      .toc,
+      .hero-actions,
+      .risk-toolbar,
+      .reset-btn,
+      .state-control {
+        display: none !important;
+      }
+
+      .page {
+        width: 100%;
+      }
+
+      .content-layout {
+        display: block;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 20px 0 36px;
+      }
+
+      .hero h1 {
+        font-size: 64px;
+      }
+
+      .hero-card,
+      .panel-dark,
+      .wedge-statement,
+      .lab,
+      .final-call {
+        color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .section {
+        break-inside: avoid;
+        padding: 38px 0;
+      }
+
+      .detail-only {
+        display: grid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to decision brief</a>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 17V7m5 10V11m5 6V4m5 13V9"/>
+            <path d="M2.5 20h19"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <strong>HVAC Vertical</strong>
+          <span>Cofounder decision brief</span>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#snapshot">Snapshot</a>
+        <a href="#market">Market</a>
+        <a href="#offer">Offer</a>
+        <a href="#economics">Economics</a>
+        <a href="#gates">Gates</a>
+        <a href="#plan">Plan</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="mode-btn" id="modeToggle" type="button" aria-pressed="false">Show full detail</button>
+        <button class="icon-btn" id="printButton" type="button" aria-label="Print or save as PDF" title="Print or save as PDF">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <path d="M6 14h12v7H6z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="page" id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Adversarially audited research | June 11, 2026</p>
+        <h1 id="hero-title">Prepare now.<span>Enter second.</span></h1>
+        <p class="hero-lede">
+          HVAC is an attractive market with a dangerous operating condition:
+          <strong>at a $2K monthly rep cost, the evidence-backed 4-5 closes per rep now clears. Retention, paid-media delivery, client quality, and compliant execution become the real scale tests.</strong>
+        </p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#economics">
+            Test the economics
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="m9 18 6-6-6-6"/>
+            </svg>
+          </a>
+          <a class="secondary-link" href="#gates">Review the kill gates</a>
+        </div>
+        <ul class="hero-meta">
+          <li>13,647-word source paper</li>
+          <li>8 research lanes</li>
+          <li>19 audit fixes applied</li>
+          <li>Founder override: $2K rep salary</li>
+        </ul>
+      </div>
+
+      <aside class="hero-card" aria-label="Executive verdict">
+        <div class="verdict-top">
+          <div class="verdict-status">
+            <span class="status-pill">Conditional go</span>
+            <span class="source-date">SECOND VERTICAL</span>
+          </div>
+          <h2>Do not scale the market. Prove the motion.</h2>
+          <p>The market passes. The acquisition system is unproven. Treat September through March as a bounded experiment, not a launch narrative.</p>
+        </div>
+        <div class="verdict-stack">
+          <div class="verdict-line">
+            <span class="step">01</span>
+            <div>
+              <strong>Validate now</strong>
+              <span>Capacity, interviews, warm-list machinery</span>
+            </div>
+            <b>JUN-AUG</b>
+          </div>
+          <div class="verdict-line">
+            <span class="step">02</span>
+            <div>
+              <strong>Pilot in shoulder season</strong>
+              <span>Two net-new reps, separate brand</span>
+            </div>
+            <b>SEP 01</b>
+          </div>
+          <div class="verdict-line">
+            <span class="step">03</span>
+            <div>
+              <strong>Kill or earn the right to scale</strong>
+              <span>Close rate, engagement, attach, churn, compliance</span>
+            </div>
+            <b>DEC-MAR</b>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="content-layout">
+      <aside class="toc" aria-label="Section navigation">
+        <span class="toc-label">Decision map</span>
+        <nav id="tocNav" aria-label="Decision map">
+          <a href="#snapshot">01 Snapshot</a>
+          <a href="#case">02 Pros / cons</a>
+          <a href="#market">03 Market / buyer</a>
+          <a href="#offer">04 Wedge / offer</a>
+          <a href="#economics">05 Economics</a>
+          <a href="#gates">06 Kill gates</a>
+          <a href="#plan">07 Operating plan</a>
+          <a href="#risks">08 Risks</a>
+          <a href="#integrity">09 Integrity</a>
+        </nav>
+      </aside>
+
+      <main class="main-content" id="main">
+        <section class="section" id="snapshot" data-section>
+          <div class="section-heading" data-reveal>
+            <div>
+              <p class="eyebrow">The answer in 30 seconds</p>
+              <h2>Attractive market. Unforgiving acquisition math.</h2>
+            </div>
+            <p>The opportunity is real, but the market size is not the decision. The decision is whether Core sells repeatably and paid media expands revenue without destroying trust or margin.</p>
+          </div>
+
+          <div class="kpi-grid" data-reveal>
+            <article class="kpi">
+              <span class="kpi-label">Targetable employer band</span>
+              <strong>21-24K</strong>
+              <p>Derived HVAC-only firms at roughly $500K-$5M revenue. Not Census-official.</p>
+            </article>
+            <article class="kpi">
+              <span class="kpi-label">Core entry price</span>
+              <strong>$349-449</strong>
+              <p>Month-to-month land. Google Growth adds $499-$699 once tracking is ready.</p>
+            </article>
+            <article class="kpi">
+              <span class="kpi-label">Viable sales floor</span>
+              <strong>4 / rep</strong>
+              <p>Monthly closes at the modeled $2K rep salary. Eight remains the upside target.</p>
+            </article>
+            <article class="kpi">
+              <span class="kpi-label">Bounded experiment</span>
+              <strong>$7-11K</strong>
+              <p>Modeled planning-case exposure through the December or March decision window.</p>
+            </article>
+          </div>
+
+          <div class="decision-band" data-reveal>
+            <span class="decision-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+                <path d="M12 3v18M3 12h18"/>
+                <circle cx="12" cy="12" r="8"/>
+              </svg>
+            </span>
+            <div>
+              <strong>The load-bearing condition</strong>
+              <p>The pilot must sustain at least four collected sales per rep, keep early churn controlled, and prove that Google Growth can attach without turning delivery into an unmeasured agency promise.</p>
+            </div>
+            <b>G1: >=4 CLOSES</b>
+          </div>
+        </section>
+
+        <section class="section" id="case" data-section>
+          <div class="section-heading" data-reveal>
+            <div>
+              <p class="eyebrow">The balanced case</p>
+              <h2>Why it is worth testing. Why it can still fail.</h2>
+            </div>
+            <p>The research supports a pilot, not conviction theater. Both sides of the case are strong enough to deserve operating gates.</p>
+          </div>
+
+          <div class="two-column">
+            <article class="truth-card pro" data-reveal>
+              <h3>What makes HVAC compelling</h3>
+              <p>Structural fit between the market and the founders' capability set.</p>
+              <ul class="point-list">
+                <li><span>Large, fragmented market with a clear 21-24K in-band employer target.</span></li>
+                <li><span>Google-mediated demand makes spend waste and missed calls visible in dollars.</span></li>
+                <li><span>Google Search and LSA create a natural $499-$699 expansion path after Core earns trust.</span></li>
+                <li><span>A real pricing gap exists between $249 template mills and $2,800+ agencies.</span></li>
+                <li><span>AI fulfillment can bundle more value at a one-product price.</span></li>
+                <li><span>Buyer pain is concrete: hostage assets, lock-ins, bad leads, and unanswered phones.</span></li>
+                <li><span>The website rebuild can show proof before trust exists.</span></li>
+              </ul>
+            </article>
+
+            <article class="truth-card con" data-reveal>
+              <h3>What can kill the thesis</h3>
+              <p>The failure modes attack sales, churn, compliance, and founder focus.</p>
+              <ul class="point-list">
+                <li><span>Owners already pattern-match "we reviewed your website" as spam.</span></li>
+                <li><span>The sourced funnel supports 4-5 closes per rep; that is viable at $2K salary, but client fit and retention are still unproven.</span></li>
+                <li><span>2026 demand is correcting while 53% prioritize current customers over acquisition.</span></li>
+                <li><span>ServiceTitan and Avoca compress the high-spend tier.</span></li>
+                <li><span>Paid media raises the burden from shipping assets to proving qualified calls and booked jobs.</span></li>
+                <li><span>TCPA discipline can throttle the dial volume the model depends on.</span></li>
+                <li><span>Two founders running two verticals can produce an ambiguous, under-resourced test.</span></li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="market" data-section>
+          <div class="section-heading" data-reveal>
+            <div>
+              <p class="eyebrow">Market and buyer</p>
+              <h2>Qualification beats persuasion.</h2>
+            </div>
+            <p>The 120K-business headline is not the sales list. The target is a visible-spend minority already paying for Google, Angi, or an agency and still leaking value.</p>
+          </div>
+
+          <div class="market-grid">
+            <article class="panel" data-reveal>
+              <span class="panel-kicker">Market shape</span>
+              <h3>Big enough without requiring broad-market penetration.</h3>
+              <div class="stat-row">
+                <div class="mini-stat">
+                  <strong>120,461</strong>
+                  <span>Total U.S. HVAC businesses in 2026</span>
+                </div>
+                <div class="mini-stat">
+                  <strong>$159.4B</strong>
+                  <span>Industry revenue, with only +0.7% 2026 growth</span>
+                </div>
+                <div class="mini-stat">
+                  <strong>~3%</strong>
+                  <span>In-band penetration at one-call-close steady state</span>
+                </div>
+              </div>
+              <p class="detail-only detail-note">
+                The HVAC-only $500K-$5M band is derived by applying a 45-50% HVAC share to Census's combined plumbing/HVAC code. It is a planning estimate, not an official count.
+              </p>
+            </article>
+
+            <article class="panel panel-dark" data-reveal>
+              <span class="panel-kicker">Modal decision-maker</span>
+              <h3>Phone-first owner. Negative-trust starting point.</h3>
+              <div class="buyer-lines">
+                <div class="buyer-line">
+                  <span>Profile</span>
+                  <strong>50-ish ex-technician, owner-operated, family business</strong>
+                </div>
+                <div class="buyer-line">
+                  <span>Median income</span>
+                  <strong>~$76K, making $349 meaningful</strong>
+                </div>
+                <div class="buyer-line">
+                  <span>Trust scars</span>
+                  <strong>Hostage site, lock-in, bad leads, useless reports</strong>
+                </div>
+                <div class="buyer-line">
+                  <span>Best aperture</span>
+                  <strong>7:30-8:00 AM local, shoulder season</strong>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="targeting-grid">
+            <article class="target-box good" data-reveal>
+              <h3>Target first</h3>
+              <ul>
+                <li>2-10 trucks with visible growth intent</li>
+                <li>Already active on LSA, Angi, or Google Ads</li>
+                <li>Housecall Pro, Jobber, or spreadsheet operators</li>
+                <li>Agency switchers and Townsquare-orphan prospects</li>
+                <li>Slow responders with provable missed-call waste</li>
+              </ul>
+            </article>
+            <article class="target-box bad" data-reveal>
+              <h3>Filter out</h3>
+              <ul>
+                <li>Modal owner spending approximately zero on marketing</li>
+                <li>ServiceTitan shops where closed-job data wins</li>
+                <li>PE-owned brands with centralized shared services</li>
+                <li>One-truck shops without budget or operating stability</li>
+                <li>Any state/number segment the compliance stack cannot support</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="offer" data-section>
+          <div class="section-heading" data-reveal>
+            <div>
+              <p class="eyebrow">Product architecture</p>
+              <h2>The website opens the door. Operations justify the subscription.</h2>
+            </div>
+            <p>Do not sell a website retainer. Land with owned infrastructure, then expand into Google Search, LSA, and Meta only when tracking can tie spend to qualified calls and booked jobs.</p>
+          </div>
+
+          <article class="wedge-statement" data-reveal>
+            <h3>The website is the <span>wedge</span> - not the product, not irrelevant.</h3>
+            <p>A personalized rebuild attacks the first 30 seconds of a cold sale. It becomes credible only when it names the prospect's reviews, photos, license, market, and ownership terms in a human-voiced walkthrough.</p>
+          </article>
+
+          <div class="flow">
+            <article class="flow-step" data-reveal>
+              <b>01</b>
+              <h4>Light audit for every prospect</h4>
+              <p>Ad waste or AI-visibility artifact reaches 100% of the worked list.</p>
+            </article>
+            <article class="flow-step" data-reveal>
+              <b>02</b>
+              <h4>Full rebuild after connect</h4>
+              <p>Current 20/day capacity supports reached prospects, not every first dial.</p>
+            </article>
+            <article class="flow-step" data-reveal>
+              <b>03</b>
+              <h4>Human 60-90s walkthrough</h4>
+              <p>Specific proof plus "you own everything" in the first breath.</p>
+            </article>
+            <article class="flow-step" data-reveal>
+              <b>04</b>
+              <h4>Land Core, then earn paid media</h4>
+              <p>Baseline tracking first. Google becomes the primary expansion path.</p>
+            </article>
+          </div>
+
+          <div class="offer-grid">
+            <article class="offer-card" data-reveal>
+              <span class="panel-kicker">01 | Core foundation</span>
+              <h3>Own the conversion layer before buying more traffic.</h3>
+              <div class="offer-price">
+                <strong>$349-449</strong>
+                <span>/ month<br>month-to-month</span>
+              </div>
+              <ul class="feature-chips">
+                <li class="feature-chip">Owned rebuilt site</li>
+                <li class="feature-chip">GBP / local SEO ops</li>
+                <li class="feature-chip">Review velocity</li>
+                <li class="feature-chip">Automated ROI reporting</li>
+                <li class="feature-chip">Financing CTAs</li>
+                <li class="feature-chip">Repair-vs-replace content</li>
+              </ul>
+              <p class="offer-note">
+                Setup fee: $399-$500, engineered to equal rep commission. Client owns domain, code, and assets.
+              </p>
+            </article>
+
+            <article class="offer-card featured" data-reveal>
+              <span class="panel-kicker">02 | Primary expansion</span>
+              <h3>Google Growth captures high-intent demand.</h3>
+              <div class="offer-price">
+                <strong>$849-1,149</strong>
+                <span>/ month total<br>Core included</span>
+              </div>
+              <ul class="feature-chips">
+                <li class="feature-chip">Google Search</li>
+                <li class="feature-chip">LSA management</li>
+                <li class="feature-chip">Call tracking</li>
+                <li class="feature-chip">Landing pages</li>
+                <li class="feature-chip">Offline conversions</li>
+                <li class="feature-chip">Booked-job reporting</li>
+              </ul>
+              <p class="offer-note">
+                Adds $499-$699 in management fees. Best fit: operators already spending or ready to fund measurable high-intent acquisition.
+              </p>
+            </article>
+
+            <article class="offer-card" data-reveal>
+              <span class="panel-kicker">03 | Full-funnel expansion</span>
+              <h3>Meta creates and recaptures seasonal demand.</h3>
+              <div class="offer-price">
+                <strong>$1,099-1,549</strong>
+                <span>/ month total<br>Google + Core included</span>
+              </div>
+              <ul class="feature-chips">
+                <li class="feature-chip">Tune-up campaigns</li>
+                <li class="feature-chip">Maintenance plans</li>
+                <li class="feature-chip">Financing offers</li>
+                <li class="feature-chip">Replacement demand</li>
+                <li class="feature-chip">Remarketing</li>
+              </ul>
+              <p class="offer-note">
+                Meta adds $249-$399. It supports seasonal offers and remarketing; it is not the primary emergency-service channel.
+              </p>
+            </article>
+          </div>
+
+          <div class="decision-band">
+            <span class="decision-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+                <path d="M4 18V8m5 10V4m6 14v-7m5 7V6"/>
+              </svg>
+            </span>
+            <div>
+              <strong>Commercial rule</strong>
+              <p>Client ad spend is always separate from agency fees. Voice AI remains an optional +$199-$299 attach after call volume justifies it.</p>
+            </div>
+            <b>NO HIDDEN MEDIA SPEND</b>
+          </div>
+
+          <div class="decision-band detail-only">
+            <span class="decision-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9">
+                <path d="M4 12h16M12 4v16"/>
+              </svg>
+            </span>
+            <div>
+              <strong>What changed after audit</strong>
+              <p>The standalone LSA dispute-recovery SKU was withdrawn. Google removed manual disputes on July 24, 2024. Lead-rating and credit monitoring survive only as features inside LSA management.</p>
+            </div>
+            <b>SKU WITHDRAWN</b>
+          </div>
+        </section>
+
+        <section class="section" id="economics" data-section>
+          <div class="section-heading" data-reveal>
+            <div>
+              <p class="eyebrow">Scenario economics</p>
+              <h2>The planning case now clears. Scale still has to be earned.</h2>
+            </div>
+            <p>Switch scenarios to see what the artifact must earn. Seasonality, ramp, support, and fixed tools are already reflected in the supplied scenario outputs.</p>
+          </div>
+
+          <div class="scenario-shell" data-reveal>
+            <div class="scenario-toolbar">
+              <div class="segmented" role="tablist" aria-label="Economic scenarios">
+                <button type="button" role="tab" aria-selected="true" data-scenario="planning">Planning</button>
+                <button type="button" role="tab" aria-selected="false" data-scenario="onecall">One-call close</button>
+                <button type="button" role="tab" aria-selected="false" data-scenario="upside">Upside</button>
+              </div>
+              <span class="scenario-tag" id="scenarioTag">EVIDENCE-BACKED DEFAULT</span>
+            </div>
+
+            <h3 class="scenario-name" id="scenarioName">Planning case: viable, still gated.</h3>
+            <p class="scenario-description" id="scenarioDescription">A normal two-stage agency funnel produces 4-5 closes per rep. At a $2K monthly rep salary, Core-only economics reach cumulative cash-positive around months 6-8. Paid-media attach is deliberately excluded.</p>
+
+            <div class="scenario-metrics">
+              <div class="scenario-metric">
+                <span>Closes / rep / mo</span>
+                <strong id="metricCloses">4</strong>
+              </div>
+              <div class="scenario-metric">
+                <span>Monthly churn</span>
+                <strong id="metricChurn">5.0%</strong>
+              </div>
+              <div class="scenario-metric">
+                <span>LTV : CAC</span>
+                <strong id="metricRatio">11.9-15.8x</strong>
+              </div>
+              <div class="scenario-metric">
+                <span>Cash positive</span>
+                <strong id="metricCash">Month 6-8</strong>
+              </div>
+              <div class="scenario-metric">
+                <span>Cash trough</span>
+                <strong id="metricTrough">-$11K</strong>
+              </div>
+            </div>
+
+            <div class="scenario-visuals">
+              <div class="chart-card">
+                <div class="card-title-row">
+                  <h4>Monthly recurring revenue</h4>
+                  <span>SEASONAL MODEL</span>
+                </div>
+                <div class="bar-chart" role="img" aria-label="Scenario MRR at month 12 and month 24">
+                  <div class="bar-group">
+                    <div class="bar" id="barM12"><span id="barM12Value">$29K</span></div>
+                    <small>Month 12</small>
+                  </div>
+                  <div class="bar-group">
+                    <div class="bar" id="barM24"><span id="barM24Value">$49K</span></div>
+                    <small>Month 24</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="funnel-card">
+                <div class="card-title-row">
+                  <h4>Per-rep shoulder-month funnel</h4>
+                  <span>MODELED</span>
+                </div>
+                <div class="funnel">
+                  <div class="funnel-row">
+                    <span>Prospects</span>
+                    <div class="funnel-track"><div class="funnel-fill" id="funnelProspects"></div></div>
+                    <b id="funnelProspectsValue">270</b>
+                  </div>
+                  <div class="funnel-row">
+                    <span>Reached</span>
+                    <div class="funnel-track"><div class="funnel-fill" id="funnelReached"></div></div>
+                    <b id="funnelReachedValue">108</b>
+                  </div>
+                  <div class="funnel-row">
+                    <span>Watched</span>
+                    <div class="funnel-track"><div class="funnel-fill" id="funnelWatched"></div></div>
+                    <b id="funnelWatchedValue">30</b>
+                  </div>
+                  <div class="funnel-row">
+                    <span>Conversation</span>
+                    <div class="funnel-track"><div class="funnel-fill" id="funnelConversation"></div></div>
+                    <b id="funnelConversationValue">13.5</b>
+                  </div>
+                  <div class="funnel-row">
+                    <span>Closed</span>
+                    <div class="funnel-track"><div class="funnel-fill" id="funnelClosed"></div></div>
+                    <b id="funnelClosedValue">4.4</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="scenario-warning">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+                <path d="M12 3 2.7 19a1 1 0 0 0 .87 1.5h16.86A1 1 0 0 0 21.3 19L12 3Z"/>
+                <path d="M12 9v4m0 3h.01"/>
+              </svg>
+              <p id="scenarioWarning">The base forecast assumes Core revenue only. Google Growth and Meta are real expansion paths, but they do not count until attach, delivery cost, ad spend, and booked-job reporting are observed.</p>
+            </div>
+          </div>
+
+          <div class="section-spacer"></div>
+
+          <div class="lab" data-reveal>
+            <div class="lab-copy">
+              <span class="panel-kicker">Try the numbers yourself</span>
+              <h3>Does the math work? Test it.</h3>
+              <p>Pick a package, then drag the five sliders to see how the business holds up. Monthly profit per client is the price minus what it costs to serve them (plus a 3% card-processing fee); how long clients stay is estimated from the cancellation rate.</p>
+
+              <div class="segmented package-presets" role="group" aria-label="Package presets">
+                <button type="button" aria-pressed="true" data-package="core">Core</button>
+                <button type="button" aria-pressed="false" data-package="google">Google Growth</button>
+                <button type="button" aria-pressed="false" data-package="full">Full Funnel</button>
+              </div>
+
+              <div class="controls">
+                <div class="range-control">
+                  <div class="range-label">
+                    <label for="closesRange">New clients signed per month</label>
+                    <output id="closesOutput" for="closesRange">4</output>
+                  </div>
+                  <input id="closesRange" type="range" min="2" max="14" step="1" value="4">
+                </div>
+
+                <div class="range-control">
+                  <div class="range-label">
+                    <label for="churnRange">Clients who cancel each month</label>
+                    <output id="churnOutput" for="churnRange">5.0%</output>
+                  </div>
+                  <input id="churnRange" type="range" min="1.5" max="8" step="0.5" value="5">
+                </div>
+
+                <div class="range-control">
+                  <div class="range-label">
+                    <label for="arpaRange">Average monthly price per client</label>
+                    <output id="arpaOutput" for="arpaRange">$399</output>
+                  </div>
+                  <input id="arpaRange" type="range" min="349" max="1599" step="25" value="399">
+                </div>
+
+                <div class="range-control">
+                  <div class="range-label">
+                    <label for="deliveryCostRange">Monthly cost to serve each client</label>
+                    <output id="deliveryCostOutput" for="deliveryCostRange">$40</output>
+                  </div>
+                  <input id="deliveryCostRange" type="range" min="40" max="400" step="10" value="40">
+                </div>
+
+                <div class="range-control">
+                  <div class="range-label">
+                    <label for="repCostRange">Salesperson salary per month</label>
+                    <output id="repCostOutput" for="repCostRange">$2,000</output>
+                  </div>
+                  <input id="repCostRange" type="range" min="1000" max="4000" step="250" value="2000">
+                </div>
+              </div>
+            </div>
+
+            <div class="lab-results" aria-live="polite">
+              <div class="lab-verdict" id="labVerdict">
+                <span>What these numbers say</span>
+                <strong id="labVerdictTitle">The math works - quality still decides.</strong>
+                <p id="labVerdictCopy">Signing four clients a month at this salary makes the money work on paper. Keeping clients happy, getting paid on time, and staying compliant decide whether it lasts.</p>
+              </div>
+
+              <div class="result-grid">
+                <div class="result-tile">
+                  <span>Cost to win one client</span>
+                  <strong id="resultCac">$500</strong>
+                </div>
+                <div class="result-tile">
+                  <span>Profit per client / mo</span>
+                  <strong id="resultContribution">$347</strong>
+                </div>
+                <div class="result-tile">
+                  <span>Lifetime profit per client</span>
+                  <strong id="resultLtv">$6,941</strong>
+                </div>
+                <div class="result-tile">
+                  <span>Return per $1 spent</span>
+                  <strong id="resultRatio">13.9x</strong>
+                </div>
+                <div class="result-tile">
+                  <span>Months to break even</span>
+                  <strong id="resultPayback">1.4 mo</strong>
+                </div>
+                <div class="result-tile">
+                  <span>Avg. months a client stays</span>
+                  <strong id="resultLifetime">20.0 mo</strong>
+                </div>
+              </div>
+              <p class="lab-note">Snapshot only. The paid-media presets exclude the client's own ad spend and do not promise results. The model also leaves out new-hire ramp-up time, seasonality, setup-fee timing, and support staffing.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="gates" data-section>
+          <div class="section-heading" data-reveal>
+            <div>
+              <p class="eyebrow">Decision control system</p>
+              <h2>Five gates turn uncertainty into a bounded bet.</h2>
+            </div>
+            <p>Mark each gate pending, passed, or failed. Two failures mean exit the vertical or pivot to B2B2B channels such as co-op dealers or consolidator white-label.</p>
+          </div>
+
+          <div class="gate-shell" data-reveal>
+            <div class="gate-summary" aria-live="polite">
+              <div class="gate-score" id="gateScore">0/5</div>
+              <div>
+                <h3 id="gateHeadline">Experiment remains open.</h3>
+                <p id="gateCopy">No gates have been resolved. The operating burden is to make each decision measurable by its date.</p>
+              </div>
+              <button class="reset-btn" id="resetGates" type="button">Reset gates</button>
+            </div>
+
+            <div class="gate-list" id="gateList">
+              <article class="gate-row" data-gate="g0" data-state="pending">
+                <span class="gate-code">G0</span>
+                <div class="gate-copy">
+                  <strong>Capacity by September 1, 2026</strong>
+                  <span>&gt;=50 rebuilds/day for one week or &lt;5-minute live-call generation.</span>
+                </div>
+                <div class="state-control" role="group" aria-label="G0 status">
+                  <button type="button" data-state-value="pending" aria-pressed="true">Pending</button>
+                  <button type="button" data-state-value="pass" aria-pressed="false">Pass</button>
+                  <button type="button" data-state-value="fail" aria-pressed="false">Fail</button>
+                </div>
+              </article>
+
+              <article class="gate-row" data-gate="g1" data-state="pending">
+                <span class="gate-code">G1</span>
+                <div class="gate-copy">
+                  <strong>Sales by December 1, 2026</strong>
+                  <span>&gt;=4 collected sales per rep per month at &gt;=$300 blended ACV.</span>
+                </div>
+                <div class="state-control" role="group" aria-label="G1 status">
+                  <button type="button" data-state-value="pending" aria-pressed="true">Pending</button>
+                  <button type="button" data-state-value="pass" aria-pressed="false">Pass</button>
+                  <button type="button" data-state-value="fail" aria-pressed="false">Fail</button>
+                </div>
+              </article>
+
+              <article class="gate-row" data-gate="g2" data-state="pending">
+                <span class="gate-code">G2</span>
+                <div class="gate-copy">
+                  <strong>Artifact engagement by December 1, 2026</strong>
+                  <span>Watched walkthrough conversations / new prospects &gt;=3%.</span>
+                </div>
+                <div class="state-control" role="group" aria-label="G2 status">
+                  <button type="button" data-state-value="pending" aria-pressed="true">Pending</button>
+                  <button type="button" data-state-value="pass" aria-pressed="false">Pass</button>
+                  <button type="button" data-state-value="fail" aria-pressed="false">Fail</button>
+                </div>
+              </article>
+
+              <article class="gate-row" data-gate="g3" data-state="pending">
+                <span class="gate-code">G3</span>
+                <div class="gate-copy">
+                  <strong>Retention by March 1, 2027</strong>
+                  <span>90-day churn &lt;=6%/month trend and &gt;=50% attached to Google Growth or another second product.</span>
+                </div>
+                <div class="state-control" role="group" aria-label="G3 status">
+                  <button type="button" data-state-value="pending" aria-pressed="true">Pending</button>
+                  <button type="button" data-state-value="pass" aria-pressed="false">Pass</button>
+                  <button type="button" data-state-value="fail" aria-pressed="false">Fail</button>
+                </div>
+              </article>
+
+              <article class="gate-row" data-gate="g4" data-state="pending">
+                <span class="gate-code">G4</span>
+                <div class="gate-copy">
+                  <strong>Compliance continuously</strong>
+                  <span>Zero TCPA demand letters and compliant volume still supports G1.</span>
+                </div>
+                <div class="state-control" role="group" aria-label="G4 status">
+                  <button type="button" data-state-value="pending" aria-pressed="true">Pending</button>
+                  <button type="button" data-state-value="pass" aria-pressed="false">Pass</button>
+                  <button type="button" data-state-value="fail" aria-pressed="false">Fail</button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="plan" data-section>
+          <div class="section-heading" data-reveal>
+            <div>
+              <p class="eyebrow">Sequencing and goals</p>
+              <h2>Now is preparation season. September is decision season.</h2>
+            </div>
+            <p>The clean sequence protects the smoke-shop warm-book advantage while creating a valid HVAC test with dedicated people, capacity, compliance, and instrumentation.</p>
+          </div>
+
+          <div class="timeline">
+            <article class="timeline-item" data-reveal>
+              <span class="timeline-date">NOW - AUG 22</span>
+              <div class="timeline-copy">
+                <h3>Validate the machinery before buying HVAC CAC.</h3>
+                <p>Use the warm vertical to pressure-test fulfillment, onboarding, reporting, and cohort instrumentation.</p>
+                <ul>
+                  <li>Founder B runs 15-20 structured HVAC owner interviews.</li>
+                  <li>Test the exact ownership-first script and $349 Core price.</li>
+                  <li>Measure artifact throughput and live-call generation time.</li>
+                  <li>Build Google Ads, LSA, Meta, call-tracking, and offline-conversion SOPs.</li>
+                  <li>Build the landline-first compliance and state-exclusion stack.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="timeline-item" data-reveal>
+              <span class="timeline-date">SEP 01, 2026</span>
+              <div class="timeline-copy">
+                <h3>Open with two net-new pilot reps.</h3>
+                <p>Separate brand, one internal platform, TSI-orphan and agency-switcher lists first.</p>
+                <ul>
+                  <li>Core bundle at $349-$449 plus $399-$500 setup.</li>
+                  <li>Offer Google Growth only where ad spend, tracking, and intake capacity are credible.</li>
+                  <li>Artifact engagement instrumented from day one.</li>
+                  <li>7:30-8:00 AM local calling window and multi-touch cadence.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="timeline-item" data-reveal>
+              <span class="timeline-date">DEC 01, 2026</span>
+              <div class="timeline-copy">
+                <h3>Read G1 and G2 without excuses.</h3>
+                <p>At roughly $7K-$11K modeled exposure, decide whether the artifact and close motion are working.</p>
+                <ul>
+                  <li>If engagement fails, the artifact/list/message thesis failed.</li>
+                  <li>If engagement passes but closes fail, price, terms, or rep execution failed.</li>
+                  <li>Measure Google Growth attach separately; do not rescue weak Core sales with assumed upsell.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="timeline-item" data-reveal>
+              <span class="timeline-date">MAR 01, 2027</span>
+              <div class="timeline-copy">
+                <h3>Read retention and attach.</h3>
+                <p>Determine whether onboarding, booked-job reporting, and paid-media attach create a durable account without widening the Core-only loss envelope.</p>
+                <ul>
+                  <li>Churn and Google Growth attach arms of G3 are binding.</li>
+                  <li>Two gate failures trigger exit or B2B2B pivot.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="risks" data-section>
+          <div class="section-heading" data-reveal>
+            <div>
+              <p class="eyebrow">Risk register</p>
+              <h2>The risks are identifiable. Several are fatal if ignored.</h2>
+            </div>
+            <p>Filter the register by decision type. Full-detail mode reveals the entire eleven-risk list from the paper.</p>
+          </div>
+
+          <div class="risk-toolbar" role="group" aria-label="Risk filters" data-reveal>
+            <button class="filter-btn" type="button" data-risk-filter="all" aria-pressed="true">All risks</button>
+            <button class="filter-btn" type="button" data-risk-filter="fatal" aria-pressed="false">Fatal potential</button>
+            <button class="filter-btn" type="button" data-risk-filter="commercial" aria-pressed="false">Commercial</button>
+            <button class="filter-btn" type="button" data-risk-filter="operational" aria-pressed="false">Operational</button>
+          </div>
+
+          <div class="risk-grid" id="riskGrid">
+            <article class="risk-card" data-risk-tags="fatal commercial" data-reveal>
+              <span class="risk-num">01</span>
+              <div>
+                <h3>Cold-start trust deficit</h3>
+                <div class="risk-meta"><span>High probability</span><span>Acquisition</span></div>
+                <p>The exact opening message is already spam-saturated. Specific proof and ownership terms must break the pattern.</p>
+              </div>
+            </article>
+
+            <article class="risk-card" data-risk-tags="fatal commercial" data-reveal>
+              <span class="risk-num">02</span>
+              <div>
+                <h3>Closes below four per rep</h3>
+                <div class="risk-meta"><span>Med-high</span><span>Fatal</span></div>
+                <p>The sourced two-stage funnel naturally lands at 4-5, which now clears. Falling below four makes sales repeatability and rep scaling the concern.</p>
+              </div>
+            </article>
+
+            <article class="risk-card" data-risk-tags="commercial operational" data-reveal>
+              <span class="risk-num">03</span>
+              <div>
+                <h3>First-90-day churn</h3>
+                <div class="risk-meta"><span>Med-high</span><span>Retention</span></div>
+                <p>Low-touch AI fulfillment can worsen communication. The answer is 48-hour go-live, visible value, and human saves.</p>
+              </div>
+            </article>
+
+            <article class="risk-card" data-risk-tags="fatal commercial" data-reveal>
+              <span class="risk-num">04</span>
+              <div>
+                <h3>Platform absorption</h3>
+                <div class="risk-meta"><span>High certainty</span><span>Platform</span></div>
+                <p>ServiceTitan's closed-job data wins the high-spend tier. Stay explicitly below that boundary.</p>
+              </div>
+            </article>
+
+            <article class="risk-card" data-risk-tags="commercial" data-reveal>
+              <span class="risk-num">05</span>
+              <div>
+                <h3>Paid-media expectation and margin risk</h3>
+                <div class="risk-meta"><span>Med-high</span><span>Delivery</span></div>
+                <p>Ad management is the best upsell and the easiest promise to overstate. Price delivery, separate ad spend, and report qualified calls and booked jobs.</p>
+              </div>
+            </article>
+
+            <article class="risk-card" data-risk-tags="commercial operational" data-reveal>
+              <span class="risk-num">07</span>
+              <div>
+                <h3>Correction and seasonal cliffs</h3>
+                <div class="risk-meta"><span>High certainty</span><span>Timing</span></div>
+                <p>January shipments were down 29.2%. Sell substitution, start in September, and fund the seasonal trough.</p>
+              </div>
+            </article>
+
+            <article class="risk-card" data-risk-tags="fatal operational" data-reveal>
+              <span class="risk-num">08</span>
+              <div>
+                <h3>TCPA / mini-TCPA exposure</h3>
+                <div class="risk-meta"><span>Medium</span><span>Fatal if ignored</span></div>
+                <p>Compliance is not a footnote: landline-first, DNC scrubbing, no outbound AI voice, state exclusions, volume caps.</p>
+              </div>
+            </article>
+
+            <article class="risk-card detail-only" data-risk-tags="commercial" data-reveal>
+              <span class="risk-num">06</span>
+              <div>
+                <h3>PE removes the richest independents</h3>
+                <div class="risk-meta"><span>High certainty</span><span>Slow acting</span></div>
+                <p>Firm count grows while spend-quality is consolidated. Filter PE brands and keep white-label optionality.</p>
+              </div>
+            </article>
+
+            <article class="risk-card detail-only" data-risk-tags="commercial" data-reveal>
+              <span class="risk-num">09</span>
+              <div>
+                <h3>Website commoditization</h3>
+                <div class="risk-meta"><span>High certainty</span><span>Priced in</span></div>
+                <p>Free AI websites are table stakes. Never price the subscription as a website.</p>
+              </div>
+            </article>
+
+            <article class="risk-card detail-only" data-risk-tags="operational commercial" data-reveal>
+              <span class="risk-num">10</span>
+              <div>
+                <h3>Google policy dependence</h3>
+                <div class="risk-meta"><span>Med-high</span><span>Platform</span></div>
+                <p>The withdrawn dispute SKU is the warning. Re-verify policy quarterly and avoid single-mechanism pricing.</p>
+              </div>
+            </article>
+
+            <article class="risk-card detail-only" data-risk-tags="fatal operational" data-reveal>
+              <span class="risk-num">11</span>
+              <div>
+                <h3>Two-founder bandwidth</h3>
+                <div class="risk-meta"><span>High probability</span><span>Execution</span></div>
+                <p>Under-resourcing creates muddy gate reads. One founder per vertical and no shared phone team.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="escape-grid detail-only">
+            <article class="escape-card">
+              <span>Escape hatch 01</span>
+              <h3>Co-op-funded dealer channel</h3>
+              <p>One manufacturer or distributor relationship can unlock hundreds of dealers with third-party funding.</p>
+            </article>
+            <article class="escape-card">
+              <span>Escape hatch 02</span>
+              <h3>Consolidator white-label</h3>
+              <p>License the rebuild and audit engine to platforms with dozens or hundreds of brands.</p>
+            </article>
+            <article class="escape-card">
+              <span>Escape hatch 03</span>
+              <h3>Peak-season missed-call wedge</h3>
+              <p>Sell answer-rate economics when owners feel the pain most acutely, even if website outreach pauses.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="integrity" data-section>
+          <div class="section-heading" data-reveal>
+            <div>
+              <p class="eyebrow">Research integrity</p>
+              <h2>The audit made the recommendation harder - and more useful.</h2>
+            </div>
+            <p>The briefing keeps the paper's retractions, derived estimates, and unknowns visible. This is a decision tool, not a sales deck.</p>
+          </div>
+
+          <div class="integrity-grid">
+            <details data-reveal>
+              <summary>Material corrections</summary>
+              <div class="details-body">
+                <ul>
+                  <li>LSA dispute recovery was withdrawn because Google removed manual disputes in July 2024.</li>
+                  <li>The old conservative cash-positive claim was arithmetically impossible and withdrawn.</li>
+                  <li>The target-band count was reduced to 21-24K and labeled as derived.</li>
+                  <li>The founder-provided rep assumption changes from the paper's $8K loaded estimate to a $2K monthly salary.</li>
+                  <li>Under that override and the actual $349-$449 Core range, planning reaches cash-positive around months 6-8 and one-call-close around month 4.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details data-reveal>
+              <summary>What remains unverified</summary>
+              <div class="details-body">
+                <ul>
+                  <li>Solicitations per owner per week.</li>
+                  <li>Published conversion data for full-rebuild-before-contact outreach.</li>
+                  <li>HVAC-specific subscription churn.</li>
+                  <li>Whether a $500 setup fee depresses phone close rates.</li>
+                  <li>Google Growth and Meta attach rates, delivery hours, and gross margin.</li>
+                  <li>Minimum client ad spend required to produce a readable campaign signal.</li>
+                  <li>Exact HVAC-only employer counts within the Census band.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="detail-only" data-reveal>
+              <summary>Falsification triggers</summary>
+              <div class="details-body">
+                <ul>
+                  <li>A competitor running personalized video rebuilds at more than 1,000 per month kills the white-space premise.</li>
+                  <li>Artifact conversation rate below 3% kills the artifact thesis.</li>
+                  <li>Two failed gates trigger exit or channel pivot.</li>
+                  <li>Smoke warm-book performance missing by more than 30% delays HVAC to the February-April 2027 window.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="detail-only" data-reveal>
+              <summary>Evidence language</summary>
+              <div class="details-body">
+                <p>Numbers in this briefing inherit the source paper's labels: HIGH, MEDIUM, LOW, ESTIMATE, and OPINION. The base scenarios remain Core-only. Paid-media presets are transparent sensitivity tests, not a forecast or performance promise.</p>
+              </div>
+            </details>
+          </div>
+
+          <ul class="source-strip" data-reveal>
+            <li>IBISWorld</li>
+            <li>U.S. Census</li>
+            <li>ServiceTitan</li>
+            <li>SEC filings</li>
+            <li>AHRI / ACHR News</li>
+            <li>Google LSA docs</li>
+            <li>FTC</li>
+            <li>SearchLight Digital</li>
+            <li>TCPA legal reviews</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <div class="final-call" data-reveal>
+            <p class="eyebrow">Bottom line</p>
+            <h2>Build the test. <span>Do not pre-believe the result.</span></h2>
+            <p>Validate capacity and buyer reaction now. Enter September with two dedicated reps. Land Core at $349-$449, make Google Growth the primary expansion path, keep client ad spend separate, and let G0-G4 decide whether HVAC earns scale.</p>
+            <div class="final-grid">
+              <div class="final-item">
+                <span>Now</span>
+                <strong>Interviews, capacity, compliance, warm-list validation</strong>
+              </div>
+              <div class="final-item">
+                <span>September</span>
+                <strong>Two-rep pilot with instrumented artifact funnel</strong>
+              </div>
+              <div class="final-item">
+                <span>December / March</span>
+                <strong>Scale, fix, exit, or pivot based on gates</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <span>HVAC VERTICAL COFOUNDER BRIEF | SOURCE PAPER: JUNE 11, 2026</span>
+      <span>Standalone decision artifact | Founder override: $2K monthly rep salary</span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const money = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0
+      });
+
+      const scenarios = {
+        planning: {
+          tag: "EVIDENCE-BACKED DEFAULT",
+          name: "Planning case: viable, still gated.",
+          description: "A normal two-stage agency funnel produces 4-5 closes per rep. At a $2K monthly rep salary, Core-only economics reach cumulative cash-positive around months 6-8. Paid-media attach is deliberately excluded.",
+          closes: "4",
+          churn: "5.0%",
+          ratio: "11.9-15.8x",
+          cash: "Month 6-8",
+          trough: "-$11K",
+          m12: 29,
+          m24: 49,
+          prospects: 270,
+          reached: 108,
+          watched: 30,
+          conversation: 13.5,
+          closed: 4.4,
+          warning: "The base forecast assumes Core revenue only. Google Growth and Meta are real expansion paths, but they do not count until attach, delivery cost, ad spend, and booked-job reporting are observed."
+        },
+        onecall: {
+          tag: "DESIGNED TARGET",
+          name: "One-call-close: the case the system must earn.",
+          description: "The artifact substitutes for brand trust, moves the pitch into the live call, and reaches eight closes per rep at 0.42% dial-to-close.",
+          closes: "8",
+          churn: "3.5%",
+          ratio: "39.7x",
+          cash: "~Month 4",
+          trough: "-$4K",
+          m12: 83,
+          m24: 152,
+          prospects: 270,
+          reached: 122,
+          watched: 47,
+          conversation: 45,
+          closed: 8,
+          warning: "This is a Core-only acceleration case. Paid-media attach is additional upside, not part of the displayed MRR."
+        },
+        upside: {
+          tag: "LOW-PROBABILITY UPSIDE",
+          name: "Upside: valuable, but not a planning assumption.",
+          description: "TSI-grade sales operations, stronger attach, lower churn, and six reps produce a large result - but also require roughly four times current artifact capacity.",
+          closes: "12",
+          churn: "2.5%",
+          ratio: "95.2x",
+          cash: "~Month 2",
+          trough: "-$1K",
+          m12: 199,
+          m24: 410,
+          prospects: 300,
+          reached: 150,
+          watched: 69,
+          conversation: 52,
+          closed: 12,
+          warning: "The paper assigns this less than 15% probability. It depends on elite sales execution and a 4x artifact-throughput increase."
+        }
+      };
+
+      const scenarioButtons = Array.from(document.querySelectorAll("[data-scenario]"));
+      const maxMrr = 410;
+
+      function setText(id, value) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = value;
+      }
+
+      function setScenario(key) {
+        const scenario = scenarios[key];
+        scenarioButtons.forEach((button) => {
+          button.setAttribute("aria-selected", String(button.dataset.scenario === key));
+        });
+
+        setText("scenarioTag", scenario.tag);
+        setText("scenarioName", scenario.name);
+        setText("scenarioDescription", scenario.description);
+        setText("metricCloses", scenario.closes);
+        setText("metricChurn", scenario.churn);
+        setText("metricRatio", scenario.ratio);
+        setText("metricCash", scenario.cash);
+        setText("metricTrough", scenario.trough);
+        setText("barM12Value", "$" + scenario.m12 + "K");
+        setText("barM24Value", "$" + scenario.m24 + "K");
+        setText("scenarioWarning", scenario.warning);
+
+        const m12Height = Math.max(16, (scenario.m12 / maxMrr) * 205);
+        const m24Height = Math.max(16, (scenario.m24 / maxMrr) * 205);
+        document.getElementById("barM12").style.height = m12Height + "px";
+        document.getElementById("barM24").style.height = m24Height + "px";
+
+        const funnelValues = [
+          ["Prospects", scenario.prospects],
+          ["Reached", scenario.reached],
+          ["Watched", scenario.watched],
+          ["Conversation", scenario.conversation],
+          ["Closed", scenario.closed]
+        ];
+
+        funnelValues.forEach(([name, value]) => {
+          const percentage = Math.max(2, (value / scenario.prospects) * 100);
+          document.getElementById("funnel" + name).style.width = percentage + "%";
+          setText("funnel" + name + "Value", String(value));
+        });
+      }
+
+      scenarioButtons.forEach((button) => {
+        button.addEventListener("click", () => setScenario(button.dataset.scenario));
+      });
+
+      const ranges = {
+        closes: document.getElementById("closesRange"),
+        churn: document.getElementById("churnRange"),
+        arpa: document.getElementById("arpaRange"),
+        deliveryCost: document.getElementById("deliveryCostRange"),
+        repCost: document.getElementById("repCostRange")
+      };
+
+      const packagePresets = {
+        core: { arpa: 399, deliveryCost: 40 },
+        google: { arpa: 999, deliveryCost: 140 },
+        full: { arpa: 1324, deliveryCost: 220 }
+      };
+      const packageButtons = Array.from(document.querySelectorAll("[data-package]"));
+
+      function setPackage(key) {
+        const preset = packagePresets[key];
+        ranges.arpa.value = String(preset.arpa);
+        ranges.deliveryCost.value = String(preset.deliveryCost);
+        packageButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.package === key));
+        });
+        calculateEconomics();
+      }
+
+      function calculateEconomics() {
+        const closes = Number(ranges.closes.value);
+        const churn = Number(ranges.churn.value);
+        const arpa = Number(ranges.arpa.value);
+        const deliveryCost = Number(ranges.deliveryCost.value);
+        const repCost = Number(ranges.repCost.value);
+        const contribution = arpa * 0.97 - deliveryCost;
+        const lifetime = 1 / (churn / 100);
+        const ltv = contribution * lifetime;
+        const cac = repCost / closes;
+        const ratio = ltv / cac;
+        const payback = cac / contribution;
+
+        setText("closesOutput", String(closes));
+        setText("churnOutput", churn.toFixed(1) + "%");
+        setText("arpaOutput", money.format(arpa));
+        setText("deliveryCostOutput", money.format(deliveryCost));
+        setText("repCostOutput", money.format(repCost));
+        setText("resultCac", money.format(cac));
+        setText("resultContribution", money.format(contribution));
+        setText("resultLtv", money.format(ltv));
+        setText("resultRatio", ratio.toFixed(1) + "x");
+        setText("resultPayback", payback.toFixed(1) + " mo");
+        setText("resultLifetime", lifetime.toFixed(1) + " mo");
+
+        const verdict = document.getElementById("labVerdict");
+        let title = "";
+        let copy = "";
+        let border = "rgba(255, 255, 255, 0.12)";
+
+        if (ratio >= 3 && closes >= 4 && churn <= 6) {
+          title = "The math works - quality still decides.";
+          copy = "Each client is worth well more than it costs to win them, and the sales pace clears the bar (Gate 1). Keeping clients happy, getting paid on time, and staying compliant decide whether it lasts.";
+          border = "rgba(74, 222, 128, 0.55)";
+        } else if (ratio >= 3 && closes < 4) {
+          title = "Each client is profitable, but sales are too slow.";
+          copy = "The per-client math works, but fewer than four new clients a month won't cover the salesperson. Prove the sales process is repeatable before hiring more people.";
+          border = "rgba(245, 158, 11, 0.62)";
+        } else if (ratio >= 3 && churn > 6) {
+          title = "Winning clients works. Keeping them doesn't.";
+          copy = "Signing clients pays off up front, but at this cancellation rate they leave too quickly for the business to hold together (Gate 3 fails).";
+          border = "rgba(245, 158, 11, 0.62)";
+        } else {
+          title = "These numbers don't work.";
+          copy = "A client's lifetime profit is less than 3x what it costs to win them. The price, cancellation rate, sales pace, or salary needs to change before scaling.";
+          border = "rgba(248, 113, 113, 0.65)";
+        }
+
+        setText("labVerdictTitle", title);
+        setText("labVerdictCopy", copy);
+        verdict.style.borderColor = border;
+      }
+
+      Object.values(ranges).forEach((range) => {
+        range.addEventListener("input", () => {
+          if (range === ranges.arpa || range === ranges.deliveryCost) {
+            packageButtons.forEach((button) => button.setAttribute("aria-pressed", "false"));
+          }
+          calculateEconomics();
+        });
+      });
+
+      packageButtons.forEach((button) => {
+        button.addEventListener("click", () => setPackage(button.dataset.package));
+      });
+
+      const gateRows = Array.from(document.querySelectorAll("[data-gate]"));
+      const gateStorageKey = "hvac-brief-gates-v1";
+
+      function loadGateStates() {
+        try {
+          return JSON.parse(localStorage.getItem(gateStorageKey)) || {};
+        } catch (error) {
+          return {};
+        }
+      }
+
+      function saveGateStates(states) {
+        try {
+          localStorage.setItem(gateStorageKey, JSON.stringify(states));
+        } catch (error) {
+          // The briefing remains fully usable when storage is unavailable.
+        }
+      }
+
+      function updateGateSummary() {
+        const states = gateRows.map((row) => row.dataset.state);
+        const passes = states.filter((state) => state === "pass").length;
+        const fails = states.filter((state) => state === "fail").length;
+        const pending = states.filter((state) => state === "pending").length;
+
+        setText("gateScore", passes + "/5");
+
+        if (passes === 5) {
+          setText("gateHeadline", "Earned the right to scale.");
+          setText("gateCopy", "All five conditions pass. Scale deliberately while continuing to monitor compliance and cohort retention.");
+        } else if (fails >= 2) {
+          setText("gateHeadline", "Exit or pivot the channel.");
+          setText("gateCopy", "Two or more failures trigger the paper's kill rule. Move to co-op, white-label, or another vertical.");
+        } else if (fails === 1) {
+          setText("gateHeadline", "One failure: isolate, fix, and retest.");
+          setText("gateCopy", "Do not scale. Use the failed stage to identify whether the problem is capacity, artifact, sales, retention, or compliance.");
+        } else {
+          setText("gateHeadline", "Experiment remains open.");
+          setText("gateCopy", pending + " gate" + (pending === 1 ? "" : "s") + " unresolved. The burden is to make each decision measurable by its date.");
+        }
+      }
+
+      function setGateState(row, state, persist) {
+        row.dataset.state = state;
+        row.querySelectorAll("[data-state-value]").forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.stateValue === state));
+        });
+
+        if (persist) {
+          const states = loadGateStates();
+          states[row.dataset.gate] = state;
+          saveGateStates(states);
+        }
+        updateGateSummary();
+      }
+
+      const savedGates = loadGateStates();
+      gateRows.forEach((row) => {
+        setGateState(row, savedGates[row.dataset.gate] || "pending", false);
+        row.querySelectorAll("[data-state-value]").forEach((button) => {
+          button.addEventListener("click", () => setGateState(row, button.dataset.stateValue, true));
+        });
+      });
+
+      document.getElementById("resetGates").addEventListener("click", () => {
+        gateRows.forEach((row) => setGateState(row, "pending", false));
+        saveGateStates({});
+      });
+
+      const riskButtons = Array.from(document.querySelectorAll("[data-risk-filter]"));
+      const riskCards = Array.from(document.querySelectorAll("[data-risk-tags]"));
+
+      function filterRisks(filter) {
+        riskButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.riskFilter === filter));
+        });
+
+        riskCards.forEach((card) => {
+          const isDetailOnly = card.classList.contains("detail-only");
+          const detailMode = document.body.classList.contains("detail-mode");
+          const matches = filter === "all" || card.dataset.riskTags.split(" ").includes(filter);
+          card.hidden = !matches || (isDetailOnly && !detailMode);
+        });
+      }
+
+      riskButtons.forEach((button) => {
+        button.addEventListener("click", () => filterRisks(button.dataset.riskFilter));
+      });
+
+      const modeToggle = document.getElementById("modeToggle");
+      const modeStorageKey = "hvac-brief-detail-mode";
+
+      function setDetailMode(enabled) {
+        document.body.classList.toggle("detail-mode", enabled);
+        modeToggle.setAttribute("aria-pressed", String(enabled));
+        modeToggle.textContent = enabled ? "Executive view" : "Show full detail";
+        try {
+          localStorage.setItem(modeStorageKey, enabled ? "1" : "0");
+        } catch (error) {
+          // Non-critical preference.
+        }
+        const activeRisk = document.querySelector("[data-risk-filter][aria-pressed='true']");
+        filterRisks(activeRisk ? activeRisk.dataset.riskFilter : "all");
+      }
+
+      let initialDetailMode = false;
+      try {
+        initialDetailMode = localStorage.getItem(modeStorageKey) === "1";
+      } catch (error) {
+        initialDetailMode = false;
+      }
+      setDetailMode(initialDetailMode);
+      modeToggle.addEventListener("click", () => setDetailMode(!document.body.classList.contains("detail-mode")));
+
+      document.getElementById("printButton").addEventListener("click", () => window.print());
+
+      const revealItems = document.querySelectorAll("[data-reveal]");
+      if ("IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: "0px 0px -40px" });
+        revealItems.forEach((item) => revealObserver.observe(item));
+      } else {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      }
+
+      const sections = Array.from(document.querySelectorAll("[data-section]"));
+      const tocLinks = Array.from(document.querySelectorAll("#tocNav a"));
+      if ("IntersectionObserver" in window) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (!visible) return;
+          tocLinks.forEach((link) => {
+            link.classList.toggle("active", link.getAttribute("href") === "#" + visible.target.id);
+          });
+        }, { threshold: [0.15, 0.3, 0.55], rootMargin: "-18% 0px -62% 0px" });
+        sections.forEach((section) => sectionObserver.observe(section));
+      }
+
+      function updateReadingProgress() {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+        document.getElementById("readingProgress").style.width = Math.min(100, Math.max(0, progress)) + "%";
+      }
+
+      window.addEventListener("scroll", updateReadingProgress, { passive: true });
+      window.addEventListener("resize", updateReadingProgress);
+
+      setScenario("planning");
+      calculateEconomics();
+      updateReadingProgress();
+    }());
+  </script>
+</body>
+</html>
